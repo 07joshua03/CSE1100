@@ -5,19 +5,30 @@ import assignment5_2.*;
 import assignment5_3.Date;
 import assignment5_4.Job;
 import assignment6_1.JobCatalog;
+import assignment7_1_2.JobIO;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class PlanningApplication {
 
+    private static final String jobsFile = "res/jobslist.txt";
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         boolean quit = false;
         JobCatalog jobCatalog = new JobCatalog();
+
+        Scanner scanner = new Scanner(System.in);
+        try{
+            jobCatalog.setJobs(JobIO.readJobs(jobsFile));
+        } catch (FileNotFoundException e){
+            System.out.println("Critical error: File not found!");
+            quit = true;
+        }
+
 
         System.out.println("Welcome to the planning application!");
         while(!quit){
@@ -120,6 +131,7 @@ public class PlanningApplication {
                         System.out.print("Please give requirements for this equipment: ");
                         requirements = scanner.next();
                         requiredEquipment.add(new Torch(requirements));
+                        break;
                     case "exit":
                         quit = true;
                         break;

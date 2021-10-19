@@ -1,8 +1,10 @@
 package assignment5_2;
 
+import assignment6_3.PowerSupply;
+
 import java.util.Objects;
 
-public class Torch extends Equipment{
+public class Torch extends Equipment implements PowerSupply {
 
     public Torch(String requirements) {
         super(requirements);
@@ -10,7 +12,11 @@ public class Torch extends Equipment{
 
     @Override
     public String toString() {
-        return "Requirements of torch: " + getRequirements();
+        return "Torch, " + getPowerSupply() + ", " + getRequirements() + ";";
+    }
+
+    public String toWriteString(){
+        return "Torch, " +  getRequirements() + ";";
     }
 
     @Override
@@ -20,5 +26,9 @@ public class Torch extends Equipment{
             return Objects.equals(getRequirements(), o.getRequirements());
         }
         return false;
+    }
+
+    public String getPowerSupply(){
+        return "Butane Gas";
     }
 }

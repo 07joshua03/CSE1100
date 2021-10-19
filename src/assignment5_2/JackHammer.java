@@ -1,15 +1,21 @@
 package assignment5_2;
 
+import assignment6_3.PowerSupply;
+
 import java.util.Objects;
 
-public class JackHammer extends Equipment{
+public class JackHammer extends Equipment implements PowerSupply {
     public JackHammer(String requirements) {
         super(requirements);
     }
 
     @Override
     public String toString() {
-        return "Requirements of jack-hammer: " + getRequirements();
+        return "JackHammer, " + getPowerSupply() + ", " +  getRequirements() + ";";
+    }
+
+    public String toWriteString(){
+        return "JackHammer, " +  getRequirements() + ";";
     }
 
     @Override
@@ -19,5 +25,9 @@ public class JackHammer extends Equipment{
             return Objects.equals(getRequirements(), o.getRequirements());
         }
         return false;
+    }
+
+    public String getPowerSupply(){
+        return "Air Compressor";
     }
 }

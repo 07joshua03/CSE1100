@@ -34,7 +34,9 @@ public class Job {
             if(i != requiredEquipment.size() - 1) eqBuilder.append(", ");
         }
 
-        return "Job number "+ jobNumber + ":\nDescription: " + description + "\nRequired equipment: " + eqBuilder + "\nPlanned date: " + plannedDate.toString();
+
+
+        return "Job number "+ jobNumber + "\nLocation: " + location + "\nDescription: " + description + "\nRequired equipment: " + eqBuilder + "\nPlanned date: " + plannedDate.toString();
     }
 
     @Override

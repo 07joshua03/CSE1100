@@ -9,7 +9,7 @@ public class ScaffoldingTower extends Equipment{
 
     @Override
     public String toString() {
-        return "Requirements of scaffolding-tower: " + getRequirements();
+        return "ScaffoldingTower, " + getRequirements() + ";";
     }
 
     @Override

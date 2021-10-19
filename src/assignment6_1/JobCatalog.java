@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class JobCatalog {
 
-    private final List<Job> jobs;
+    private List<Job> jobs;
 
     public JobCatalog() {
         jobs = new ArrayList<>();
@@ -33,5 +33,9 @@ public class JobCatalog {
 
     public List<Job> getJobs() {
         return jobs;
+    }
+
+    public void setJobs(List<Job> jobs){
+        this.jobs = jobs;
     }
 }
