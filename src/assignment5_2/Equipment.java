@@ -2,7 +2,7 @@ package assignment5_2;
 
 public abstract class Equipment {
 
-    private String requirements;
+    private final String requirements;
 
     public Equipment(String requirements){
         this.requirements = requirements;

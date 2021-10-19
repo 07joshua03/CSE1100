@@ -1,5 +1,7 @@
 package assignment5_2;
 
+import java.util.Objects;
+
 public class JackHammer extends Equipment{
     public JackHammer(String requirements) {
         super(requirements);
@@ -14,7 +16,7 @@ public class JackHammer extends Equipment{
     public boolean equals(Object obj) {
         if (obj instanceof JackHammer){
             JackHammer o = (JackHammer) obj;
-            if(getRequirements() == o.getRequirements()) return true;
+            return Objects.equals(getRequirements(), o.getRequirements());
         }
         return false;
     }

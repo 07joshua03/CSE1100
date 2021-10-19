@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class JobCatalog {
 
-    private List<Job> jobs;
+    private final List<Job> jobs;
 
     public JobCatalog() {
         jobs = new ArrayList<>();

@@ -2,10 +2,10 @@ package assignment5_1;
 
 public class Address {
 
-    private String street;
-    private int number;
-    private String zipCode;
-    private String city;
+    private final String street;
+    private final int number;
+    private final String zipCode;
+    private final String city;
 
     public Address(String street, int number, String zipCode, String city){
         this.street = street;

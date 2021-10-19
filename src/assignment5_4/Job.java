@@ -9,11 +9,11 @@ import java.util.Objects;
 
 public class Job {
 
-    private int jobNumber;
-    private Address location;
-    private String description;
-    private List<Equipment> requiredEquipment;
-    private Date plannedDate;
+    private final int jobNumber;
+    private final Address location;
+    private final String description;
+    private final List<Equipment> requiredEquipment;
+    private final Date plannedDate;
     private static int jobTotal = 0;
 
     public Job(Address location, String description, List<Equipment> requiredEquipment, Date plannedDate) {
