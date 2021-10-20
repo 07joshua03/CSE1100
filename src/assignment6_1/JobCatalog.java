@@ -18,7 +18,7 @@ public class JobCatalog {
     public String toString() {
         StringBuilder jobsBuilder = new StringBuilder();
         for (Job job : jobs) {
-            jobsBuilder.append(job).append("\n");
+            jobsBuilder.append("\n").append(job).append("\n");
         }
         return "Job Catalog: \n" + jobsBuilder;
     }

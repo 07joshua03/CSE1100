@@ -13,7 +13,7 @@ public class Job {
     private final Address location;
     private final String description;
     private final List<Equipment> requiredEquipment;
-    private final Date plannedDate;
+    private Date plannedDate;
     private static int jobTotal = 0;
 
     public Job(Address location, String description, List<Equipment> requiredEquipment, Date plannedDate) {
@@ -36,7 +36,7 @@ public class Job {
 
 
 
-        return "Job number "+ jobNumber + "\nLocation: " + location + "\nDescription: " + description + "\nRequired equipment: " + eqBuilder + "\nPlanned date: " + plannedDate.toString();
+        return "Job number "+ jobNumber + ":\nLocation: " + location + "\nDescription: " + description + "\nRequired equipment: " + eqBuilder + "\nPlanned date: " + plannedDate.toString();
     }
 
     @Override
@@ -69,5 +69,9 @@ public class Job {
 
     public static int getJobTotal() {
         return jobTotal;
+    }
+
+    public void setPlannedDate(Date date){
+        this.plannedDate = date;
     }
 }

@@ -4,8 +4,10 @@ import assignment5_1.Address;
 import assignment5_2.*;
 import assignment5_3.Date;
 import assignment5_4.Job;
+import assignment6_3.PowerSupply;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -64,6 +66,33 @@ public class JobIO {
     }
 
     public static void writeJobs(List<Job> jobs, String filename){
+        try {
+            File file = new File(filename);
+            FileOutputStream fileOutputStream = new FileOutputStream(file, false);
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 0; i < jobs.size(); i++) {
+                Job job = jobs.get(i);
+                stringBuilder.append(job.getLocation()).append("\n");
+                stringBuilder.append(job.getDescription()).append("\n");
+                for (Equipment e: job.getRequiredEquipment()){
+                    if(e instanceof PowerSupply){
+                        stringBuilder.append(e.toString().replace(", " + ((PowerSupply) e).getPowerSupply(), "" ));
+                    }else{
+                        stringBuilder.append(e);
+                    }
+
+                }
+
+//                stringBuilder.append(job.getRequiredEquipment()).append("\n");
+                stringBuilder.append("\n").append(job.getPlannedDate());
+                if(i < jobs.size() - 1) stringBuilder.append("\n");
+            }
+            fileOutputStream.write(stringBuilder.toString().getBytes(StandardCharsets.UTF_8));
+        }catch (FileNotFoundException e){
+            System.out.println("File to write to not found!");
+        }catch (IOException e){
+            System.out.println("Error while writing to file!");
+        }
 
     }
 

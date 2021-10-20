@@ -9,9 +9,9 @@ import assignment7_1_2.JobIO;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 public class PlanningApplication {
 
@@ -34,7 +34,10 @@ public class PlanningApplication {
         while(!quit){
             System.out.print("1 - Show all jobs in the catalog.\n" +
                     "2 - Add a new job.\n" +
-                    "3-6 - To be implemented.\n" +
+                    "3 - Delete existing job.\n" +
+                    "4 - Change date of existing job.\n" +
+                    "5 - Print jobs by date.\n" +
+                    "6 - Print required materials by date.\n" +
                     "7 - Quit application.\n\n" +
                     "Please choose an option: ");
             try{
@@ -45,8 +48,25 @@ public class PlanningApplication {
                     case 2:
                         jobCatalog.getJobs().add(getNewJob(scanner));
                         break;
+                    case 3:
+                        deleteJob(scanner, jobCatalog);
+                        break;
+                    case 4:
+                        changeDate(scanner, jobCatalog);
+                        break;
+                    case 5:
+                        Stream<Job> jobsFromDate = getJobsFromDate(scanner, jobCatalog);
+                        if(jobsFromDate != null) jobsFromDate.forEach(System.out::println);
+                        break;
+                    case 6:
+                        Stream<Job> jobsForReqMats = getJobsFromDate(scanner, jobCatalog);
+                        if(jobsForReqMats != null) {
+                            printMaterials(jobsForReqMats);
+                        }else System.out.println("\nError while getting jobs!");
+                        break;
                     case 7:
                         quit = true;
+                        JobIO.writeJobs(jobCatalog.getJobs(), jobsFile);
                         break;
                     default:
                         throw new NotImplementedException();
@@ -181,4 +201,105 @@ public class PlanningApplication {
         return new Date(day, month, year);
     }
 
+    private static void deleteJob(Scanner scanner, JobCatalog jobCatalog){
+        boolean wantToDelete = true;
+        while(wantToDelete){
+            try{
+                System.out.println(jobCatalog);
+                System.out.print("\nPlease choose a job to delete, \nor type 0 to go back: ");
+                int input = Integer.parseInt(scanner.next());
+                if(input == 0) wantToDelete = false;
+                else{
+                    for(int i = 0; i < jobCatalog.getJobs().size(); i++){
+                        if(jobCatalog.getJobs().get(i).getJobNumber() == input){
+                            System.out.print("Are you sure (y/N)? ");
+                            boolean sure = false;
+                            while(!sure) {
+                                switch (scanner.next()){
+                                    case "y":
+                                        jobCatalog.getJobs().remove(i);
+                                        sure = true;
+                                        System.out.println("\nJob deleted!\n");
+                                        break;
+                                    case "n":
+                                    case "":
+                                        sure = true;
+                                        break;
+                                    default:
+                                        System.out.println("\nPlease give a valid option!");
+                                }
+                            }
+                            break;
+                        }
+                        if(i == jobCatalog.getJobs().size() - 1) throw new FileNotFoundException();
+                    }
+
+                }
+            }catch (NumberFormatException e){
+                System.out.println("Please give a valid number!");
+            }catch (FileNotFoundException e){
+                System.out.println("Job doesn't exist! Please provide a valid job!");
+            }
+        }
+
+    }
+
+    private static void changeDate(Scanner scanner, JobCatalog jobCatalog){
+        boolean wantToChangeDate = true;
+        while(wantToChangeDate){
+            try{
+                System.out.println(jobCatalog);
+                System.out.print("\nPlease choose a job number to change date of, \nor type 0 to go back: ");
+                int input = Integer.parseInt(scanner.next());
+                if(input == 0) wantToChangeDate = false;
+                else{
+                    for(int i = 0; i < jobCatalog.getJobs().size(); i++){
+                        if(jobCatalog.getJobs().get(i).getJobNumber() == input){
+                            System.out.print("\nDay: ");
+                            int day = Integer.parseInt(scanner.next());
+                            System.out.print("Month: ");
+                            int month = Integer.parseInt(scanner.next());
+                            System.out.print("Year: ");
+                            int year = Integer.parseInt(scanner.next());
+                            jobCatalog.getJobs().get(i).setPlannedDate(new Date(day, month, year));
+                            break;
+                        }
+                        if(i == jobCatalog.getJobs().size() - 1) throw new FileNotFoundException();
+                    }
+
+                }
+            }catch (NumberFormatException e){
+                System.out.println("Please give a valid number!");
+            }catch (FileNotFoundException e){
+                System.out.println("Job doesn't exist! Please provide a valid job!");
+            }
+        }
+    }
+
+    private static Stream<Job> getJobsFromDate(Scanner scanner, JobCatalog jobCatalog){
+        try {
+            System.out.println("Please provide the date of job(s):\n");
+            System.out.print("Day: ");
+            int day = Integer.parseInt(scanner.next());
+            System.out.print("Month: ");
+            int month = Integer.parseInt(scanner.next());
+            System.out.print("Year: ");
+            int year = Integer.parseInt(scanner.next());
+            Stream<Job> jobStream = jobCatalog.getJobs().stream();
+            Stream<Job> foundJobs = jobStream.filter(x -> x.getPlannedDate().equals(new Date(day, month, year)));
+            foundJobs.forEach(System.out::println);
+            return foundJobs;
+        }catch (NumberFormatException e){
+            System.out.println("PLease input valid number!");
+        }catch (Exception e){
+            System.out.println("Error! Please try again!");
+        }
+        return null;
+    }
+
+    private static void printMaterials(Stream<Job> jobStream){
+        List<Equipment> equipmentList = new ArrayList<>();
+        jobStream.forEach(x -> equipmentList.addAll(x.getRequiredEquipment()));
+        equipmentList.stream().distinct().forEach(System.out::println);
+    }
 }

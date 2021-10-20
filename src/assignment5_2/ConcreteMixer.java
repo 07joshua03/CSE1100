@@ -9,7 +9,7 @@ public class ConcreteMixer extends Equipment{
 
     @Override
     public String toString() {
-        return "ConcreteMixer, " + getRequirements() + ";";
+        return "ConcreteMixer, " + getRequirements() + "; ";
     }
 
     @Override

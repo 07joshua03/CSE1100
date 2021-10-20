@@ -5,4 +5,4 @@ JackHammer, A hardened chisel; ConcreteMixer, None;
 Cornelis Drebbelweg; 5; 2628CM; Delft
 Repair one step on the eastern stairway to the 1st floor.
 
-14-6-2021
+23-10-2021

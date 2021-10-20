@@ -11,11 +11,7 @@ public class JackHammer extends Equipment implements PowerSupply {
 
     @Override
     public String toString() {
-        return "JackHammer, " + getPowerSupply() + ", " +  getRequirements() + ";";
-    }
-
-    public String toWriteString(){
-        return "JackHammer, " +  getRequirements() + ";";
+        return "JackHammer, " +   getRequirements() + ", " + getPowerSupply() +  "; ";
     }
 
     @Override

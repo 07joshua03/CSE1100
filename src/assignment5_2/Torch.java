@@ -12,11 +12,7 @@ public class Torch extends Equipment implements PowerSupply {
 
     @Override
     public String toString() {
-        return "Torch, " + getPowerSupply() + ", " + getRequirements() + ";";
-    }
-
-    public String toWriteString(){
-        return "Torch, " +  getRequirements() + ";";
+        return "JackHammer, " +   getRequirements() + ", " + getPowerSupply() +  "; ";
     }
 
     @Override
