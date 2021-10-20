@@ -10,7 +10,6 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.FileNotFoundException;
 import java.util.*;
-import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class PlanningApplication {
@@ -60,9 +59,8 @@ public class PlanningApplication {
                         break;
                     case 6:
                         Stream<Job> jobsForReqMats = getJobsFromDate(scanner, jobCatalog);
-                        if(jobsForReqMats != null) {
-                            printMaterials(jobsForReqMats);
-                        }else System.out.println("\nError while getting jobs!");
+                        assert jobsForReqMats != null;
+                        printMaterials(jobsForReqMats);
                         break;
                     case 7:
                         quit = true;
@@ -286,9 +284,8 @@ public class PlanningApplication {
             System.out.print("Year: ");
             int year = Integer.parseInt(scanner.next());
             Stream<Job> jobStream = jobCatalog.getJobs().stream();
-            Stream<Job> foundJobs = jobStream.filter(x -> x.getPlannedDate().equals(new Date(day, month, year)));
-            foundJobs.forEach(System.out::println);
-            return foundJobs;
+
+            return jobStream.filter(x -> x.getPlannedDate().equals(new Date(day, month, year)));
         }catch (NumberFormatException e){
             System.out.println("PLease input valid number!");
         }catch (Exception e){
