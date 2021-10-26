@@ -1,4 +1,4 @@
-package assignment5_1;
+package jobs.assignment5_1;
 
 public class Address {
 

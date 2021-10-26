@@ -1,12 +1,11 @@
-package assignment5_2;
+package jobs.assignment5_2;
 
-import assignment6_3.PowerSupply;
+import jobs.assignment6_3.PowerSupply;
 
 import java.util.Objects;
 
-public class Torch extends Equipment implements PowerSupply {
-
-    public Torch(String requirements) {
+public class JackHammer extends Equipment implements PowerSupply {
+    public JackHammer(String requirements) {
         super(requirements);
     }
 
@@ -17,14 +16,14 @@ public class Torch extends Equipment implements PowerSupply {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Torch){
-            Torch o = (Torch) obj;
+        if (obj instanceof JackHammer){
+            JackHammer o = (JackHammer) obj;
             return Objects.equals(getRequirements(), o.getRequirements());
         }
         return false;
     }
 
     public String getPowerSupply(){
-        return "Butane Gas";
+        return "Air Compressor";
     }
 }

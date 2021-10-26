@@ -1,10 +1,10 @@
-package assignment7_1_2;
+package jobs.assignment7_1_2;
 
-import assignment5_1.Address;
-import assignment5_2.*;
-import assignment5_3.Date;
-import assignment5_4.Job;
-import assignment6_3.PowerSupply;
+import jobs.assignment5_1.Address;
+import jobs.assignment5_2.*;
+import jobs.assignment5_3.Date;
+import jobs.assignment5_4.Job;
+import jobs.assignment6_3.PowerSupply;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;

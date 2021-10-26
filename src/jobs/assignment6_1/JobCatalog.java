@@ -1,6 +1,6 @@
-package assignment6_1;
+package jobs.assignment6_1;
 
-import assignment5_4.Job;
+import jobs.assignment5_4.Job;
 
 import java.util.ArrayList;
 import java.util.List;

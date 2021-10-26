@@ -1,4 +1,4 @@
-package assignment5_2;
+package jobs.assignment5_2;
 
 public abstract class Equipment {
 

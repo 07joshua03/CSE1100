@@ -1,11 +1,11 @@
-package assignment6_2;
+package jobs.assignment6_2;
 
-import assignment5_1.Address;
-import assignment5_2.*;
-import assignment5_3.Date;
-import assignment5_4.Job;
-import assignment6_1.JobCatalog;
-import assignment7_1_2.JobIO;
+import jobs.assignment5_1.Address;
+import jobs.assignment5_2.*;
+import jobs.assignment5_3.Date;
+import jobs.assignment5_4.Job;
+import jobs.assignment6_1.JobCatalog;
+import jobs.assignment7_1_2.JobIO;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.FileNotFoundException;

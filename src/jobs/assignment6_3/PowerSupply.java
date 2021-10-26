@@ -1,4 +1,4 @@
-package assignment6_3;
+package jobs.assignment6_3;
 
 public interface PowerSupply {
 

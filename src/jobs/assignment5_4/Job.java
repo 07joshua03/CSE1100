@@ -1,8 +1,8 @@
-package assignment5_4;
+package jobs.assignment5_4;
 
-import assignment5_1.Address;
-import assignment5_2.Equipment;
-import assignment5_3.Date;
+import jobs.assignment5_1.Address;
+import jobs.assignment5_2.Equipment;
+import jobs.assignment5_3.Date;
 
 import java.util.List;
 import java.util.Objects;
