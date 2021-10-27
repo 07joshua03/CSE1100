@@ -1,6 +1,5 @@
 package marine.io;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import marine.animals.Animal;
 import marine.shelter.Coastal;
 import marine.shelter.Reef;
@@ -15,6 +14,12 @@ import java.util.Scanner;
 
 public class MarineIO {
 
+    /**
+     * Returns list of shelters from user inputted file
+     * @param scanner current scanner which is in use by application
+     * @return list of shelters from user inputted file
+     * @throws IllegalArgumentException when file is formatted wrong
+     */
     public static List<Shelter> readShelterFile(Scanner scanner) throws IllegalArgumentException {
         boolean fileFound = false;
         Scanner fileScanner = null;
@@ -51,6 +56,13 @@ public class MarineIO {
         return shelters;
     }
 
+
+    /**
+     * Returns list of animals from user inputted file
+     * @param scanner current scanner which is in use by application
+     * @return list of animals from user inputted file
+     * @throws IllegalArgumentException when file is formatted wrong
+     */
     public static List<Animal> readAnimalFile(Scanner scanner) throws IllegalArgumentException {
         boolean fileFound = false;
         Scanner fileScanner = null;
